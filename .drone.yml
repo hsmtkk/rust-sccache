@@ -1,40 +1,10 @@
----
 kind: pipeline
 type: docker
 name: default
 
 steps:
-  - name: yml_lint
-    image: sdesbure/yamllint:latest
-    commands:
-      - yamllint .drone.yml
-  - name: dockerfile_lint
-    depends_on:
-      - yml_lint
-    image: hadolint/hadolint:2.5.0-alpine
-    commands:
-      - hadolint Dockerfile
-  - name: docker_latest
-    depends_on:
-      - yml_lint
-    image: plugins/docker:19.03.8
-    settings:
-      repo: hsmtkk/rust-sccache
-      username: hsmtkk
-      password:
-        from_secret: dockerhub_token
-      squash: true
-  - name: docker_latest
-    depends_on:
-      - yml_lint
-    image: plugins/docker:19.03.8
-    when:
-      event:
-        - tag
-    settings:
-      repo: hsmtkk/rust-sccache
-      username: hsmtkk
-      password:
-        from_secret: dockerhub_token
-      squash: true
-      auto_tag: true
+- name: greeting
+  image: alpine
+  commands:
+  - echo hello
+  - echo world
