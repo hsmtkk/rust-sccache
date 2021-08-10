@@ -1,10 +1,10 @@
+---
 kind: pipeline
 type: docker
 name: default
 
 steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo hello
-  - echo world
+  - name: yml_lint
+    image: sdesbure/yamllint:latest
+    commands:
+      - yamllint .drone.yml
