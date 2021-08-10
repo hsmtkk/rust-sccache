@@ -18,6 +18,8 @@ steps:
     depends_on:
       - yml_lint
     image: plugins/docker:19.03.8
+    environment:
+      DOCKER_BUILDKIT: 1
     settings:
       repo: hsmtkk/rust-sccache
       username: hsmtkk
@@ -28,6 +30,8 @@ steps:
     depends_on:
       - yml_lint
     image: plugins/docker:19.03.8
+    environment:
+      DOCKER_BUILDKIT: 1
     when:
       event:
         - tag
